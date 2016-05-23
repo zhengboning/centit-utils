@@ -88,14 +88,13 @@ public class ReflectionOpt  {
 	 */
 	public static Object getFieldValue(Object obj,  String fieldName) {
 		Method md=null;
-		try {
-			
+		try {			
 			md = obj.getClass().getMethod("get" + StringUtils.capitalize(fieldName));
 		}catch (NoSuchMethodException noGet ){
 			try {			
 				md = obj.getClass().getMethod("is" + StringUtils.capitalize(fieldName));
 			}catch (Exception e ){
-				log.error(e.getMessage(), e);
+				log.error(noGet.getMessage() + e.getMessage(), e);
 			}
 		}catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -332,7 +331,11 @@ public class ReflectionOpt  {
 			Map<String ,Object> objMap = (Map<String ,Object>) sourceObj;
 			retObj = objMap.get(fieldValue);
 		}else{
-			retObj = ReflectionOpt.getFieldValue(sourceObj,fieldValue);
+			//如果是一个标量则不应该再有属性，所以统一返回null
+			if(ReflectionOpt.isScalarType(sourceObj.getClass())){
+				return null;
+			}else
+				retObj = ReflectionOpt.getFieldValue(sourceObj,fieldValue);
 		}
 		
 		if(retObj==null)

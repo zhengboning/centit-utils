@@ -308,10 +308,11 @@ public class ListOpt {
     }
     /**
      * 对比两个列表，判断哪些需要新增、哪些需要删除、哪些需要更新
-     * @param oldList
-     * @param newList
-     * @param compare
-     * @return insert<T> update(old,new)<T,T> delete<T>
+     * @param oldList 原始list
+     * @param newList 新的list
+     * @param compare 为对象T的主键排序对比函数，
+     * @return 返回三个list， 第一个是 需要新增的，第二个是 新旧对 他们拥有相同的排序值（主键），第三为新值中没有的，即需要删除的
+     * 			insert<T> update(old,new)<T,T> delete<T>
      */
     public static <T> Triple<List<T>, List<Pair<T,T>>, List<T>> 
     	compareTwoList(List<T> oldList,List<T> newList,Comparator<T> compare){
@@ -360,15 +361,6 @@ public class ListOpt {
     			insertList,updateList,delList);
     }
     
-    /*public static <T> T[] listToArray(List<T> t,Class<T> clazz){    	     	 
-    	if(t==null || t.size()==0)
-    		return null;
-    	@SuppressWarnings("unchecked")
-		T[] ta =(T[]) Array.newInstance(clazz, t.size());
-    	for(int i=0;i<t.size();i++)
-    		ta[i] = t.get(i);
-    	return ta;
-    }*/
     /**
      * 将list 转换为数组， list.toArray(T[]) 感觉不太好用，要new一个接受的数组对象
      * @param listObj

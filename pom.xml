@@ -74,14 +74,12 @@
 		  <artifactId>commons-net</artifactId>
 		  <version>3.2</version>
 		</dependency>
-		
-		<!-- 获取汉字首字母的类库  -->		
+		<!-- 获取汉字首字母的类库  -->
 		<dependency>
 			<groupId>net.sourceforge.pinyin4j</groupId>
 			<artifactId>pinyin4j</artifactId>
 			<version>5.0</version>
 		</dependency>
-		
 		<!-- test -->
 		<dependency>
 			<groupId>junit</groupId>
