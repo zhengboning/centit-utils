@@ -60,18 +60,21 @@ public class ListOpt {
 	 * @param pos 位置2
 	 */
 	public static <T> void moveListItem(List<T> list, int item,int pos) {
-		if(item==pos)
+		if(item==pos || item<0 || pos<0 || item>=list.size() || pos>=list.size())
 			return;
 		/*T tmp = list.remove(item);
 		list.add(pos, tmp);	*/
-		int ns = Math.min(item,pos);
-		int ne = Math.max(item,pos);
-		if(ne>=list.size())
-			return;
-		T tmp = list.get(ns);
-		for(int i=ns;i<ne-1;i++)
-			list.set(i,list.get(i+1));
-		list.set(ne, tmp);
+		if(item>pos){
+			T tmp = list.get(item);
+			for(int i=item;i>pos;i--)
+				list.set(i,list.get(i-1));
+			list.set(pos, tmp);
+		}else{
+			T tmp = list.get(item);
+			for(int i=item;i<pos;i++)
+				list.set(i,list.get(i+1));
+			list.set(pos, tmp);
+		}
 	}
 	
 

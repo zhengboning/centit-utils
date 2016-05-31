@@ -53,6 +53,20 @@
 	</properties>
 
 	<!-- mvn deploy -DpomFile=pom.xml -->
+	 
+	  <!-- <distributionManagement>
+	  	<repository> 
+	  		<id>centit-releases</id>
+	         <name>centit-release</name>
+	         <url>http://develop.centit.com:8080/nexus/content/repositories/centit-releases/</url>
+	  	</repository>
+	  	<snapshotRepository>
+	  		<id>centit-snapshots</id>
+	        <name>centit-snapshots</name>
+	        <url>http://develop.centit.com:8080/nexus/content/repositories/centit-snapshots/</url>
+	  	</snapshotRepository>
+	  </distributionManagement> -->
+  
 	<distributionManagement>
 		<repository>
 			<id>ossrh</id>
@@ -65,7 +79,7 @@
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
-
+ 
 	<dependencies>
 
 		<dependency>
